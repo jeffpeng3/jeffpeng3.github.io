@@ -1,0 +1,23 @@
+sudo nano /lib/systemd/system/rc-local.service
+
+[Install]
+WantedBy=multi-user.target
+Alias=rc-local.service
+
+sudo nano /etc/rc.local
+
+#!/bin/sh -e
+
+tmux new-session -d -s server
+
+tmux send-keys -t server "cd /home/minecraft/SIMPLE-SERVER-FILES-1.8.17" C-m
+tmux send-keys -t server "sudo bash startserver.sh" C-m
+tmux send-keys -t server "minecraft" C-m
+
+exit 0
+
+sudo chmod +x /etc/rc.local
+sudo systemctl enable rc-local
+sudo systemctl start rc-local
+sudo ln -s /lib/systemd/system/rc-local.service /etc/systemd/system/rc-local.service
+sudo reboot
