@@ -10,10 +10,18 @@ sudo nano /etc/rc.local
 ```sh
 #!/bin/sh -e
 
+# run as user
 runuser -l dcbot -c 'tmux new-session -d -s bot'
 
 runuser -l dcbot -c 'tmux send-keys -t bot "cd /home/dcbot/dcbot" C-m' 
 runuser -l dcbot -c 'tmux send-keys -t bot "python3 main.py" C-m'
+#-----------------------------------------------------------
+#run as root
+
+tmux new-session -d -s bot
+
+tmux send-keys -t bot "cd /home/dcbot/dcbot" C-m 
+tmux send-keys -t bot "python3 main.py" C-m
 
 exit 0
 ```
