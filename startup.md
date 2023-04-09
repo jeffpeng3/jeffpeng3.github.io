@@ -11,10 +11,10 @@ sudo nano /etc/rc.local
 #!/bin/sh -e
 
 # run as user
-runuser -l dcbot -c 'tmux new-session -d -s bot'
+runuser -l username -c 'tmux new-session -d -s bot'
 
-runuser -l dcbot -c 'tmux send-keys -t bot "cd /home/dcbot/dcbot" C-m' 
-runuser -l dcbot -c 'tmux send-keys -t bot "python3 main.py" C-m'
+runuser -l username -c 'tmux send-keys -t bot "cd /home/dcbot/dcbot" C-m' 
+runuser -l username -c 'tmux send-keys -t bot "python3 main.py" C-m'
 #-----------------------------------------------------------
 #run as root
 
@@ -26,9 +26,9 @@ tmux send-keys -t bot "python3 main.py" C-m
 exit 0
 ```
 
-sudo chmod +x /etc/rc.local 
-sudo systemctl enable rc-local 
-sudo systemctl start rc-local 
+sudo chmod +x /etc/rc.local  
+sudo systemctl enable rc-local  
+sudo systemctl start rc-local  
 
 //optional sudo ln -s /lib/systemd/system/rc-local.service /etc/systemd/system/rc-local.service 
 
